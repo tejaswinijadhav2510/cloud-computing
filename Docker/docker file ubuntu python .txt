@@ -1,0 +1,89 @@
+*************************DOCKER FILE on UBUNTU image with python *****************
+mkdir website
+cd website
+vi Dockerfile
+
+
+FROM ubuntu
+RUN apt update -y
+RUN apt-get install python3 -y
+RUN mkdir /app/
+COPY sample.py /app/
+CMD ["python3","/app/sample.py"]
+
+
+
+
+vi swap.py
+
+print("hello world")
+
+docker build -t myapp:1.0 .
+docker run --name c1 -ti myapp:1.0
+output====hello world
+
+***********************************          NGINX      **************************************************
+mkdir website
+cd website 
+vi Dockerfile
+RUN nginx
+COPY . /usr/share/nginx/html
+EXPOSE 80/tcp
+
+
+
+vi index.html
+teju.........
+
+docker build -t myapp:1.0 .
+docker run --name c1 -p 8080:80 myapp:1.0
+output=======vm browser [http://vm ip | container ip ]:[8080 | 80 ]
+
+********************************** NGINX PORTFOLIO ******************************
+
+
+***********************************          NGINX      **************************************************
+mkdir portfolio
+cd portfolio
+git clone <portfolio -code-link>
+ls
+cd varad....
+
+vi Dockerfile
+
+RUN nginx
+COPY . /usr/share/nginx/html
+EXPOSE 80/tcp
+
+
+docker build -t myapp:1.0 .
+docker run --name c1 -p 8080:80 myapp:1.0
+output=======vm browser [http://vm ip | container ip ]:[8080 | 80 ]
+
+
+
+****************************************************** **************** ****************************88
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

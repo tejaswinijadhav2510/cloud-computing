@@ -1,0 +1,108 @@
+=================================ques2=======================================
+q.) httpd conteiner using httpd image and bind to port 8000(create your website in html using docker volume )
+===============================terminal 1====================================
+mkdir ques2
+cd ques2
+vi index.thml
+docker run --name web1 -p 8000:80 /root/ques2
+docker run --name web1 -p 8000:80 /root/ques2:/usr/local/apache2/htdocs -v -d httpd
+docker run --name web1 -p 8000:80 -d -v /root/ques2:/usr/local/apache2/htdocs httpd
+
+====================================terminal 2===================================
+
+ ip a
+docker ps
+docker inspect 4924f5ca5bc6
+
+
+==============================Ques4========================================
+q.) create 3 conteners of httpd using docker compose file 
+=============================terminal 1============================
+mkdir ques3
+vi ques4.yml
+cd swap
+  479  ls
+  480  docker build -t tejuj/demolab1:1.0
+  481  docker build -t tejuj/demolab1:1.0 .
+  482  docker run --name c1 -ti tejuj/demolab1:1.0
+  483  history
+  484  docker push tejuj/demolab1:1.0
+  485  history
+
+root@server:~# cat ques4.yml 
+version: '3.3'
+services:
+        app1:
+                image: httpd
+                ports: 
+                  - 9000:80
+                volumes: 
+                  - /root/ques2/:/usr/local/apache2/htdocs/
+
+        app2:
+                image: httpd
+                ports:
+                  - 9010:80
+                volumes:
+                  - /root/ques3/:/usr/local/apache2/htdocs/
+
+        app3:
+                image: httpd
+                ports:
+                  - 9020:80
+                volumes:
+                  - /root/ques4/:/usr/local/apache2/htdocs/
+                  
+
+cd ques3/
+vi index.html
+cd
+mkdir ques4
+cd ques4/
+ls
+vi index.html
+docker-compose -f ques4.yml up -d
+
+==================================================terminal 2=========================================
+ip a
+docker ps
+docker inspect root_app1_1
+docker inspect root_app2_1
+docker inspect root_app3_1
+ #### open vm browser and type http://vmip:9000
+ #### open vm browser and type http://ip_(root_app1_1):80
+ #### open vm browser and type http://vmip:9020
+ #### open vm browser and type http://vmip:9030
+  #### open vm browser and type http://ip_(root_app2_1):80
+   #### open vm browser and type http://ip_(root_app3_1):80
+
+==========================================================ques5 & ques6==========================================
+Q.) python program build a image of that program using docker file and build image using docker file and host it via contener  and push it to the docker repository 
+
+
+mkdir swap
+cd swap
+ls
+vi swap.py
+######### root@server:~/swap# cat swap.py 
+	a=input("Enter the first number: ")
+	b=input("Enter the second number: ")
+	c = a
+	a = b
+	b = c
+	print(f"{a} and {b}")
+
+vi Dockerfile
+	root@server:~/swap# cat Dockerfile 
+	FROM ubuntu	
+	RUN apt update -y
+	RUN apt-get install python3 -y
+	RUN mkdir /app2/
+	COPY swap.py /app2/
+	CMD ["python3","/app2/swap.py"]
+
+docker build -t tejuj/demolab1:1.0
+docker build -t tejuj/demolab1:1.0 .
+docker run --name c1 -ti tejuj/demolab1:1.0
+docker push tejuj/demolab1:1.0
+

@@ -1,0 +1,93 @@
+###docker-compose for nginx images and host on ubuntu browser
+###docker-compose for httpd image and host on ubuntu browser
+###docker-compose for centos7 image run python program
+
+root@hpcsa-virtual-machine:~# history
+    1  cd
+    2  cd /etc/gdm3/
+    3  vi custom.conf 
+    4  cd
+    5  cd /etc/pam.d/
+    6  vi gdm-password 
+    7  exit
+    8  hostname
+    9  hostname docker
+   10  hostname
+
+   11  vim hpcsa.yaml
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+version: '3.3'
+services:
+        web1:
+                image: nginx
+                ports:
+                     - 8080:80
+                volumes:
+                     - /root/website/:/usr/share/nginx/html/
+        web2:
+                image: httpd
+                ports:
+                     - 8010:80
+                volumes:
+
+                     - /root/teju/:/usr/local/apache2/htdocs/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+      
+        root@docker:~# cat hpcsa.yaml 
+version: '3.3'
+services:
+        web1:
+                image: nginx
+                ports:
+                     - 8080:80
+                volumes:
+                     - /root/website/:/usr/share/nginx/html/
+        web2:
+                image: httpd
+                ports:
+                     - 8010:80
+                volumes:
+                     - /root/teju/:/usr/local/apache2/htdocs/                 
+        web3:
+                image: ubuntu
+                tty: true
+                stdin_open: true
+        web4:
+                image: centos:centos7
+                tty: true
+                stdin_open: true
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+~                                                    
+   13  mkdir website teju
+nginx
+
+   14  cd website/
+   15  ls
+   16  vi index.html------>content which we want to host like.......teju
+
+httpd
+
+   17  cd ../teju
+
+                ------>add content..............
+::::::::::::::::::::::::::::::::::::::::::::::::::centos &   UBUNTU::::::::::::::::::::::::::::::::::::::::::
+#docker attach <container id>
+#yum update
+#yum install python
+#vi swap.py
+#python swap.py
+
+
+   20  apt-get install vim
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@DOCKER-COMPOSE COMMANDS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+   32  docker-compose -f hpcsa.yaml up -d
+   33  yum install curl
+   34  apt-get install curl
+   36  curl 172.18.0.2------------------------> another terminal type============= docker inspect <container id>
+ ******vm browser========http://192.168.109.152:8080/--------->ip a====> ens33
+*******vm browser========http://172.18.0.2:80/-------------> docker inspect <container id> =====> docker container ip
+
+
+
+
